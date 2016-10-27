@@ -75,49 +75,49 @@ void Person::takeDamage(char _damage) {
 void Person::attack(Person* first,Person* second) {
   // attack person if fightingSkills is higher
   if (second->getFightingSkills() < fightingSkills) {
-    attackPerson(second);
+    attackPerson(first,second);
   // the other person has the same fightingSkills
   } else if (second->getFightingSkills() == getFightingSkills()) { // they are equal in fightingSkills
-    attackSameFightingSkills(second);
+    attackSameFightingSkills(first,second);
   // the other person has a higher fightingSkill
   } else {
-    second->attackPerson(first);
+    second->attackPerson(second,first);
   }
 }
 
 void Person::attackPerson(Person* first,Person* second) {
-  p->takeDamage(getDamage());
-  // if (p->getHealth() <= 0) { // add the kill if he is dead
-  //   addKill();
-  // }
+  second->takeDamage(getDamage());
+  if (second->getHealth() <= 0) { // add the kill if he is dead
+    addKill();
+  }
 }
 
 void Person::attackSameFightingSkills(Person* first,Person* second) {
   int option = rand() % 2 + 1;
   if (option == 1) { // they both get damage
-    p->takeDamage(damage);
-    //takeDamage(p->getDamage());
+    second->takeDamage(damage);
+    second->attackPerson(first,second);
   } else if (option == 2) {
     option = rand() % 2 + 1;
-    if (option == 1){  // they one de
-      p->takeDamage(damage/2);
+    if (option == 1){
+      second->takeDamage(damage);
     } else {
-      //takeDamage(p->getDamage()/2);
+      second->attackPerson(second,first);
     }
   }
-  // if (p->getHealth() <= 0) {
-  //   addKill();
-  // }
-  // if (getHealth() <= 0) {
-  //   p->addKill();
-  // }
+  if (second->getHealth() <= 0) {
+    addKill();
+  }
+  if (getHealth() <= 0) {
+    second->addKill();
+  }
 }
 
 void Person::counterAttack(Person* first,Person* second) {
-  takeDamage(p->getDamage());
-  // if (p->getHealth() <= 0) {
-  //   addKill();
-  // }
+  second->attackPerson(second,first);
+  if (second->getHealth() <= 0) {
+    addKill();
+  }
 }
 
 void Person::getHimSelf() {

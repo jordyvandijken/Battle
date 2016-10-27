@@ -8,4 +8,4 @@ all:
 
 
 clean:
-	rm *.o
+	rm main *.o
