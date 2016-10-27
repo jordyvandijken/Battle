@@ -7,33 +7,38 @@
 #include <time.h>
 #include <vector>
 
+#include "weapons.h"
+
 class Person {
   public:
     Person();
     ~Person();
-    int getHealth();
-    int getDamage();
-    int getMedicSkills();
-    int getFightingSkills();
-    int getKills();
+    char getHealth();
+    char getDamage();
+    char getDamage(std::string m);
+    char getMedicSkills();
+    char getFightingSkills();
+    char getKills();
     std::string getName();
+    Weapon* getWeapon();
     void addKill();
-    void takeDamage(int _damage);
-    void attack(Person* p);
-    void attackPerson(Person* p);
-    void attackSameFightingSkills(Person* p);
-    void counterAttack(Person* p);
+    void takeDamage(char _damage);
+    void attack(Person* first,Person* second);
+    void attackPerson(Person* first,Person* second);
+    void attackSameFightingSkills(Person* first,Person* second);
+    void counterAttack(Person* first,Person* second);
     void getHimSelf();
 
   private:
     std::string name;
     std::string gender;
-    int health;
-    int damage;
-    int medicSkills;
-    int fightingSkills;
-    int kills;
-    int armor;
+    char health;
+    char damage;
+    char medicSkills;
+    char fightingSkills;
+    char kills;
+    char armor;
+    Weapon* weapon;
 };
 
 #endif

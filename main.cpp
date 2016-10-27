@@ -3,7 +3,7 @@
 using namespace std;
 
 // amount of people
-int amount = 100000;
+int amount = 1000;
 
 // start here
 int main() {
@@ -20,6 +20,7 @@ int main() {
     people.push_back(p);
   }
 
+  // attack until there is one left
   while(people.size() > 1) {
     // pick random players
     int playerAttackt = randomNumber(people.size());
@@ -28,17 +29,19 @@ int main() {
     // attack them or it get him self
     if (playerAttackt == playerGetAttackt) {
         people[playerAttackt]->getHimSelf();
-
+    // do something with the other person
     } else {
-        people[playerAttackt]->attack(people[playerGetAttackt]);
+        people[playerAttackt]->attack(people[playerAttackt],people[playerGetAttackt]);
     }
 
+    // delete if person is dead
     if (people[playerAttackt]->getHealth() <= 0) {
       Person *p = people[playerAttackt];
       delete p;
       people.erase (people.begin() + playerAttackt);
     }
 
+    // delete if person is dead
     if (people[playerGetAttackt]->getHealth() <= 0) {
       Person *p = people[playerGetAttackt];
       delete p;
@@ -46,14 +49,24 @@ int main() {
     }
   }
 
+  // there is one person left
   cout << "=================================" << endl;
-  cout << people[0]->getName() << " won with: " << people[0]->getHealth() << " health left" << endl;
-  cout << people[0]->getDamage() << " attack damage" << endl;
-  cout << people[0]->getMedicSkills() << " medic skills" << endl;
-  cout << people[0]->getKills() << " amount kills" << endl;
+  cout << people[0]->getName() << " won with: " << ((int)people[0]->getHealth()) << " health left" << endl;
+  cout << "and used " << people[0]->getWeapon()->getWeaponName() << " as weapon" << endl;
+  cout << "min attack damage is: " << ((int)people[0]->getDamage("min")) << " and max damage is: " << ((int)people[0]->getDamage("max")) << endl;
+  cout << ((int)people[0]->getMedicSkills()) << " medic skills" << endl;
+  cout << ((int)people[0]->getKills()) << " amount kills" << endl;
+  cout << people[0]->getName() << " has " << ((int)people[0]->getFightingSkills()) << " fightingSkills" << endl;
   duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 
-  std::cout<<"time: "<< duration / 60 << endl;
+  int sec = duration;
+  int min = 0;
+  while (sec > 60) {
+    min++;
+    sec -= 60;
+  }
+
+  std::cout<<"time "<< min << ":" << sec << endl;
 
   delete people[0];
   people.clear();
