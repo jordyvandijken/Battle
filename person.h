@@ -12,32 +12,37 @@
 class Person {
   public:
     Person();
+    Person(std::string customName, int _health, int _damage, int _type);
     ~Person();
-    char getHealth();
-    char getDamage();
-    char getDamage(std::string m);
-    char getMedicSkills();
-    char getFightingSkills();
-    char getKills();
+    int getHealth();
+    int getDamage();
+    int getDamage(std::string m);
+    int getMedicSkills();
+    int getFightingSkills();
+    int getKills();
     std::string getName();
+    std::string getGender();
     Weapon* getWeapon();
     void addKill();
-    void takeDamage(char _damage);
+    void takeDamage(int _damage);
     void attack(Person* first,Person* second);
     void attackPerson(Person* first,Person* second);
     void attackSameFightingSkills(Person* first,Person* second);
     void counterAttack(Person* first,Person* second);
     void getHimSelf();
+    void stealWeapon(Person* alive,Person* dead);
+    void setweapon(Weapon* wep);
+    void weapons(int option);
 
   private:
     std::string name;
     std::string gender;
-    char health;
-    char damage;
-    char medicSkills;
-    char fightingSkills;
-    char kills;
-    char armor;
+    int health;
+    int damage;
+    int medicSkills;
+    int fightingSkills;
+    int kills;
+    int armor;
     Weapon* weapon;
 };
 

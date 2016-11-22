@@ -3,7 +3,7 @@
 Fist::Fist(){
   setName("fist");
   setMinDamage(2);
-  setMaxDamage(30);
+  setMaxDamage(10);
 }
 
 Fist::~Fist(){

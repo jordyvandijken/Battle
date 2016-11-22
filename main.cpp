@@ -3,7 +3,7 @@
 using namespace std;
 
 // amount of people
-int amount = 1000;
+int amount = 100000;
 
 // start here
 int main() {
@@ -19,6 +19,10 @@ int main() {
     Person* p = new Person();
     people.push_back(p);
   }
+
+  // here is your MAMA
+  //Person* p = new Person("Your MAMA", 999, 9999, 3);
+  //people.push_back(p);
 
   // attack until there is one left
   while(people.size() > 1) {
@@ -52,6 +56,7 @@ int main() {
   // there is one person left
   cout << "=================================" << endl;
   cout << people[0]->getName() << " won with: " << ((int)people[0]->getHealth()) << " health left" << endl;
+  cout << people[0]->getName() << " gender is: " << people[0]->getGender() << endl;
   cout << "and used " << people[0]->getWeapon()->getWeaponName() << " as weapon" << endl;
   cout << "min attack damage is: " << ((int)people[0]->getDamage("min")) << " and max damage is: " << ((int)people[0]->getDamage("max")) << endl;
   cout << ((int)people[0]->getMedicSkills()) << " medic skills" << endl;
