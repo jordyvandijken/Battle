@@ -3,7 +3,7 @@
 using namespace std;
 
 // amount of people
-int amount = 100000;
+int amount = 10000;
 
 // start here
 int main() {
@@ -19,10 +19,6 @@ int main() {
     Person* p = new Person();
     people.push_back(p);
   }
-
-  // here is your MAMA
-  //Person* p = new Person("Your MAMA", 999, 9999, 3);
-  //people.push_back(p);
 
   // attack until there is one left
   while(people.size() > 1) {
@@ -71,7 +67,7 @@ int main() {
     sec -= 60;
   }
 
-  std::cout<<"time "<< min << ":" << sec << endl;
+  std::cout << "time " << min << ":" << sec << endl;
 
   delete people[0];
   people.clear();
